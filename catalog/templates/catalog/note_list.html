@@ -1,0 +1,31 @@
+{% extends "base_generic.html" %}
+
+<!-- Add additional CSS in static file -->
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+{% block content %}
+  <h1>Notes List</h1>
+  <p>Welcome to Notepad, a website developed by <em>kasvk</em>!</p>
+  <form action="" method="get">
+    {% csrf_token %}
+    <table>
+      {{ form }}
+    </table>
+    <input type="submit" value="Submit" />
+  </form>
+  <p></p>
+  <p>Notes:</p>
+  <ol>
+    {% if note_list %}
+      {% for note in note_list %}
+        <li><a href="{{ note.get_absolute_url }}">{{ note.article }}</a></li>
+      {% endfor %}
+    {% else %}
+      <p>There are no notes in the library.</p>
+    {% endif %}
+  </ol>
+  <a href="create/">
+    <button>Create</button>
+  </a> 
+{% endblock %}  
