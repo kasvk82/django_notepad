@@ -1,7 +1,7 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <h1>Title: {{ note.article }}</h1>
+  <h1>{{ note.article }}</h1>
 
   <p><strong>Group:</strong><a href="{{ group.get_absolute_url }}"> {{ note.groupID }}</a></p>
   <p><strong>Note:</strong> {{ note.noteBody }}</p>
