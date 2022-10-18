@@ -4,7 +4,7 @@ from django.views.generic import RedirectView
 
 urlpatterns = [
     path('', views.index, name='index'),
-    # path('', RedirectView.as_view(url='group/', permanent=True)),
+    # path('', RedirectView.as_view(url='note/', permanent=True)),
     path('group/', views.GroupListView.as_view(), name='group'),
     path('note/', views.NoteListView.as_view(), name='note'),
     path('note/<int:pk>', views.NoteDetailView.as_view(), name='note-detail'),
