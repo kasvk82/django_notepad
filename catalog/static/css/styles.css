@@ -1,5 +1,43 @@
-.sidebar-nav {
-    margin-top: 20px;
-    padding: 0;
+body {
+    background-color: #211E1D;
+    color: #fff;
+}
+
+body h1 {
+    padding-top: 5%;
+    text-align: center;
+}
+
+main .elList, .elList ul {
+    text-align: center;
     list-style: none;
+}
+
+.elList a {
+    color: #fff;
+    background-color: #ebe380;
+}
+
+main .form1 {
+    text-align: center;
+}
+
+aside {
+    float: left;
+    background:#181818;
+    width: 10%;
+    padding: 1%;
+    height: 100vh;
+    color: #fff;
+    border-right: 5px solid #4d4d4d;
+}
+
+aside li {
+    padding-top: 5%;
+    list-style: none; 
+}
+
+aside li, aside a {
+    text-decoration: none;
+    color: #fff;
 }

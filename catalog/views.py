@@ -1,3 +1,4 @@
+from dataclasses import fields
 from django.shortcuts import render
 
 from .models import Group
@@ -12,7 +13,7 @@ from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
-from catalog.forms import GroupForm
+from catalog.forms import GroupForm, NoteBodyForm, NoteBodyForm_new
 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
@@ -37,35 +38,46 @@ def index(request):
         context={'num_groups':num_groups,'num_notes':num_notes, 'group2':group2, 'form':form},
     )
 
-# @login_required
-# def show_group(request):
-#    form = GroupForm()
-#    if request.method == "POST":
-#       form = GroupForm(request.POST)
-#       if form.is_valid:
-#          #redirect to the url where you'll process the input
-#         #  return HttpResponseRedirect('note_list.html') # insert reverse or url
-#         gr=request.POST.get("groups")
-#         note_list=Note.objects.filter(groupID=gr)
-#         return render(request, 'catalog/note_list.html',{
-#           'form': form,
-#           'note_list':note_list})
-#    errors = form.errors or None # form not submitted or it has errors
-# #    return render(request, 'note/note_list.html',{
-#    note_list=Note.objects.filter(article__startswith='З')
-#    return render(request, '',{
-#           'form': form,
-#           'errors':errors
-#    })
-
 class NoteCreate(LoginRequiredMixin, CreateView):
     model = Note
     fields = ['groupID', 'article', 'noteBody']
+    
+    def post(self, request, *args, **kwargs):
+        # note_instance = get_object_or_404(Note, pk=pk)
+        # form = NoteBodyForm()
+        if request.method == "POST" and request.POST.get("groups") is not None:
+            form = NoteBodyForm(request.POST)
+            if form.is_valid:
+         #redirect to the url where you'll process the input
+                # Note.groupID = request.POST.get("groups")
+                # Note.article = request.POST.get("article")
+                # Note.noteBody = request.POST.get("noteBody")
+                # Note.save()
+                n = Note(
+                    # groupID = Group(id = request.POST.get("groups")), # Вариант1 как получить экземпляр объекта по id
+                    groupID = Group.objects.get(id = request.POST.get("groups")),  # Вариант2 как получить экземпляр объекта по id
+                    article = request.POST.get("article"), 
+                    noteBody =  request.POST.get("noteBody"))
+                n.save()
+                return render(request, 'catalog/note_form.html',{'form': form})
+        return super(NoteCreate, self).get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        # В первую очередь получаем базовую реализацию контекста
+        context = super(NoteCreate, self).get_context_data(**kwargs)
+        # Добавляем новую переменную к контексту и инициализируем её некоторым значением
+        form = NoteBodyForm()
+        context['form'] = form
+        return context
+
     # initial = {'date_of_death': '11/06/2020'}
 
 class NoteUpdate(LoginRequiredMixin, UpdateView):
     model = Note
-    fields = ['groupID','article', 'noteBody'] # Not recommended (potential security issue if more fields added)
+    # fields = ['groupID','article', 'noteBody'] # Not recommended (potential security issue if more fields added)
+
+    template_name = 'catalog/note_update.html'
+    form_class = NoteBodyForm_new
 
 class NoteDelete(LoginRequiredMixin, DeleteView):
     model = Note
@@ -96,15 +108,9 @@ class NoteListView(LoginRequiredMixin, generic.ListView):
             form = GroupForm(request.GET)
             if form.is_valid:
          #redirect to the url where you'll process the input
-        #  return HttpResponseRedirect('note_list.html') # insert reverse or url
                 gr=request.GET.get("groups")
                 note_list=Note.objects.filter(groupID=gr)
                 return render(request, 'catalog/note_list.html',{'form': form,'note_list':note_list})
-                
-        # errors = form.errors or None # form not submitted or it has errors
-        #    return render(request, 'note/note_list.html',{
-        # note_list=Note.objects.filter(article__startswith='З')
-        # return render(request, 'catalog/note_list.html',{'form': form, 'errors':errors})
         return super(NoteListView, self).get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -122,10 +128,3 @@ class NoteDetailView(LoginRequiredMixin, generic.DetailView):
 
 class GroupDetailView(LoginRequiredMixin, generic.DetailView):
     model = Group
-
-# def show_group(request):
-#         game = Group.objects.get(id=1) # just an example
-#         data = {'id': game.id, 'name': game.name}
-#         form = CronForm(initial=data)
-#         return render('note/note_list.html', {'form': form})
-# Create your views here.

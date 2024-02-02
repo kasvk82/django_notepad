@@ -1,13 +1,9 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<h1>Notepad Home</h1>
+<h1>Главная страница</h1>
 
-  <p>Welcome to <em>Notepad</em>, a very basic Django website developed as a tutorial example on the Mozilla Developer Network.</p>
-
-<h2>Dynamic content</h2>
-
-  <p>The notepad has the following record counts:</p>
+  <p>Количество групп и заметок:</p>
   <ul>
     <li><strong>Groups:</strong> {{ num_groups }}</li>
     <li><strong>Notes:</strong> {{ num_notes }}</li>
@@ -20,4 +16,6 @@
     </table>
     <input type="submit" value="Submit" />
   </form> -->
+  <p>You have visited this page {{ num_visits }} time {{ num_visits|pluralize }}.</p>
+  <p>Visits {{ group.get_val }} </p>
 {% endblock %}

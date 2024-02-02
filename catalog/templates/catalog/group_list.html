@@ -5,20 +5,17 @@
 <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 
 {% block content %}
-  <h1>Notepad Groups</h1>
-  <p>Welcome to Notepad, a website developed by <em>kasvk</em>!</p>
-  <ol>
-    {% if group_list %}
-      {% for group in group_list %}
-        <li><a href="{{ group.get_absolute_url }}">{{ group.groupName }}</a></li>
-      {% endfor %}
-    {% else %}
-      <p>There are no books in the library.</p>
-    {% endif %}
-  </ol>
-  <p>You have visited this page {{ num_visits }} time {{ num_visits|pluralize }}.</p>
-  <p>Visits {{ group.get_val }} </p>
-  <a href="create/">
-    <button>Create</button>
-  </a> 
+  <h1>Группы</h1>
+  <div class="elList">
+    <ul>
+      {% if group_list %}
+        {% for group in group_list %}
+          <li><a href="{{ group.get_absolute_url }}">{{ group.groupName }}</a></li>
+        {% endfor %}
+      {% else %}
+        <p>Группы отсутствуют</p>
+      {% endif %}
+    </ul>
+    <a href="create/"><button class="btn btn-primary">Create</button></a> 
+  </div>
 {% endblock %}
