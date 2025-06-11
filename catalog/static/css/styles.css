@@ -1,11 +1,64 @@
-body {
+/* body {
     background-color: #211E1D;
     color: #fff;
+} */
+
+aside {
+    float: left;
+    width: 20%;
+    height: 100vh;
+    padding: 20px;
+    background:gray;
+    border-right: 5px solid #4d4d4d;
 }
 
-body h1 {
+#main_content{
+    float: left;
+    width: 80%;
+    height: 100vh;
+    background: gray;
+    padding: 80px;
+    border-top: 5px solid #4d4d4d;
+}
+
+#main_content h1{
+    text-align: center;
+}
+
+#main_content ul {
+    list-style-type: none;
+}
+
+#main_content ul a {
+    color: antiquewhite;
+}
+
+#main_content ul li {
+    color: antiquewhite;
+}
+
+#id_article{
+    float: left;
+    width: 80%;
+}
+
+#id_noteBody{
+    float: left;
+    width: 80%;
+}
+
+/* #elementscount {
+    color: #fff;
+} */
+
+
+/* body h1 {
     padding-top: 5%;
     text-align: center;
+}
+
+.elementscount{
+    margin-left: auto;
 }
 
 main .elList, .elList ul {
@@ -40,4 +93,4 @@ aside li {
 aside li, aside a {
     text-decoration: none;
     color: #fff;
-}
+} */
