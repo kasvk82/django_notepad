@@ -12,7 +12,11 @@ aside {
     border-right: 5px solid #4d4d4d;
 }
 
-#main_content{
+.sidebar-nav {
+    list-style-type: none;
+}
+
+#main_content {
     float: left;
     width: 80%;
     height: 100vh;
@@ -21,7 +25,7 @@ aside {
     border-top: 5px solid #4d4d4d;
 }
 
-#main_content h1{
+#main_content h1 {
     text-align: center;
 }
 
@@ -37,60 +41,12 @@ aside {
     color: antiquewhite;
 }
 
-#id_article{
+#id_article {
     float: left;
     width: 80%;
 }
 
-#id_noteBody{
+#id_noteBody {
     float: left;
     width: 80%;
 }
-
-/* #elementscount {
-    color: #fff;
-} */
-
-
-/* body h1 {
-    padding-top: 5%;
-    text-align: center;
-}
-
-.elementscount{
-    margin-left: auto;
-}
-
-main .elList, .elList ul {
-    text-align: center;
-    list-style: none;
-}
-
-.elList a {
-    color: #fff;
-    background-color: #ebe380;
-}
-
-main .form1 {
-    text-align: center;
-}
-
-aside {
-    float: left;
-    background:#181818;
-    width: 10%;
-    padding: 1%;
-    height: 100vh;
-    color: #fff;
-    border-right: 5px solid #4d4d4d;
-}
-
-aside li {
-    padding-top: 5%;
-    list-style: none; 
-}
-
-aside li, aside a {
-    text-decoration: none;
-    color: #fff;
-} */
