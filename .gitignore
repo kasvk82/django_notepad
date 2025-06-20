@@ -136,3 +136,5 @@ dmypy.json
 
 #Database
 *.sqlite3
+notepad/settings.py
+.gitignore
