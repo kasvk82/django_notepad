@@ -14,6 +14,16 @@ aside {
 
 .sidebar-nav {
     list-style-type: none;
+    padding-left: 0
+}
+
+.sidebar-nav a {
+    color:antiquewhite;
+    text-decoration: none;
+}
+
+.sidebar-nav a:hover {
+    color: blue
 }
 
 #main_content {
