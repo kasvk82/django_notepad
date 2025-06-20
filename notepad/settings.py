@@ -29,7 +29,13 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'cg#p$g+j9tax!#a3cup@1$8obt2_+&
 # DEBUG = True
 DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
 
-ALLOWED_HOSTS = ['блокнота.рф', 'www.блокнота.рф', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = [
+    'блокнота.рф', 
+    'www.блокнота.рф', 
+    '127.0.0.1', 
+    'localhost', 
+    'xn--80ab1adlec6a.xn--p1ai',
+    'www.xn--80ab1adlec6a.xn--p1ai']
 
 
 # Application definition
