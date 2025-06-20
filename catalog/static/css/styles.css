@@ -17,6 +17,10 @@ aside {
     padding-left: 0
 }
 
+.sidebar-nav li {
+    padding: 10px 0;
+}
+
 .sidebar-nav a {
     color:antiquewhite;
     text-decoration: none;
