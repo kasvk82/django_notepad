@@ -1,12 +1,16 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <h1>Note creation</h1>
-  <form action="" method="post">
-    {% csrf_token %}
-    <table>
-    {{ form.as_table }}
-    </table>
-    <input type="submit" value="Submit">
-  </form>
+  <div class="main_content_note">
+    <h1>Создание заметки</h1>
+    <form action="" method="post">
+      {% csrf_token %}
+      <table>
+        <tr><td>{{ form.groups }}</td></tr>
+        <tr><td>{{ form.article }}</td></tr>
+        <tr><td>{{ form.noteBody }}</td></tr>
+      </table>
+      <input class="btn btn-primary" type="submit" value="Сохранить">
+    </form>
+  </div>
 {% endblock %}

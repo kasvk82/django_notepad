@@ -139,3 +139,4 @@ dmypy.json
 notepad/settings.py
 .gitignore
 notepad/settings.py
+.vscode/launch.json

@@ -1,29 +1,31 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <h1>Title: {{ group.groupName }}</h1>
+  <div class="main_content">
+    <h1>{{ group.groupName }}</h1>
 
-  <p><strong>Group:</strong> {{ group.id }}</p> <!-- group detail link not yet defined -->
-  <p>
-    <ol>
-        {% if note_list %}
-          {% for note in note_list %}
-            <li><a href="{{ note.get_absolute_url }}">{{ note.article }}</a></li>
-          {% endfor %}
-        {% else %}
-          <p>There are no notes in the group.</p>
-        {% endif %}
-      </ol>
-  </p>
+    <p><strong>Group:</strong> {{ group.id }}</p> <!-- group detail link not yet defined -->
+    <p>
+      <ol>
+          {% if note_list %}
+            {% for note in note_list %}
+              <li><a href="{{ note.get_absolute_url }}">{{ note.article }}</a></li>
+            {% endfor %}
+          {% else %}
+            <p>There are no notes in the group.</p>
+          {% endif %}
+        </ol>
+    </p>
 
-  <div style="margin-left:20px;margin-top:20px">
+    <div style="margin-left:20px;margin-top:20px">
 
-  {% for copy in group.groupinstance_set.all %}
-  {% endfor %}
-  <a href="{{group.id}}/update/">
-    <button>Update</button>
-  </a> 
-  <a href="{{group.id}}/delete/">
-    <button>Delete</button>
-  </a> 
+    {% for copy in group.groupinstance_set.all %}
+    {% endfor %}
+    <a href="{{group.id}}/update/">
+      <button>Update</button>
+    </a> 
+    <a href="{{group.id}}/delete/">
+      <button>Delete</button>
+    </a>
+  </div>
 {% endblock %}

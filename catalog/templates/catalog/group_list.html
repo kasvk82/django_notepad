@@ -5,17 +5,21 @@
 <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 
 {% block content %}
-  <div id="main_content">
+  <div class="main_content">
     <h1>Группы</h1>
-    <ul>
-      {% if group_list %}
-        {% for group in group_list %}
-          <li><a href="{{ group.get_absolute_url }}">{{ group.groupName }}</a></li>
-        {% endfor %}
-      {% else %}
-        <p>Группы отсутствуют</p>
-      {% endif %}
-    </ul>
-    <a href="create/"><button class="btn btn-primary">Create</button></a> 
+    <div class="sub_content">
+      <ul>
+        {% if group_list %}
+          {% for group in group_list %}
+            <li><a href="{{ group.get_absolute_url }}">{{ group.groupName }}</a></li>
+          {% endfor %}
+        {% else %}
+          <p>Группы отсутствуют</p>
+        {% endif %}
+      </ul>
+      <div class="btn_creation">
+        <a href="create/"><button class="btn btn-primary">Создать группу</button></a> 
+      </div>
+    </div>
   </div>
 {% endblock %}

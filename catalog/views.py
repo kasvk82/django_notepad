@@ -38,6 +38,33 @@ def index(request):
         context={'num_groups':num_groups,'num_notes':num_notes, 'group2':group2, 'form':form},
     )
 
+class NoteListView(LoginRequiredMixin, generic.ListView):
+    model = Note
+    
+    def get(self, request, *args, **kwargs):
+        form = GroupForm()
+        if request.method == "GET" and request.GET.get("groups") is not None:
+            form = GroupForm(request.GET)
+            if form.is_valid:
+         #redirect to the url where you'll process the input
+                gr=request.GET.get("groups")
+                note_list=Note.objects.filter(groupID=gr)
+                return render(request, 'catalog/note_list.html',{'form': form,'note_list':note_list})
+        return super(NoteListView, self).get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        # В первую очередь получаем базовую реализацию контекста
+        context = super(NoteListView, self).get_context_data(**kwargs)
+        # Добавляем новую переменную к контексту и инициализируем её некоторым значением
+        form = GroupForm()
+        context['form'] = form
+        return context
+        
+    paginate_by = 10
+
+class NoteDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Note
+
 class NoteCreate(LoginRequiredMixin, CreateView):
     model = Note
     fields = ['groupID', 'article', 'noteBody']
@@ -47,7 +74,7 @@ class NoteCreate(LoginRequiredMixin, CreateView):
         # form = NoteBodyForm()
         if request.method == "POST" and request.POST.get("groups") is not None:
             form = NoteBodyForm(request.POST)
-            if form.is_valid:
+            if form.is_valid():
          #redirect to the url where you'll process the input
                 # Note.groupID = request.POST.get("groups")
                 # Note.article = request.POST.get("article")
@@ -98,33 +125,6 @@ class GroupDelete(LoginRequiredMixin, DeleteView):
 class GroupListView(LoginRequiredMixin, generic.ListView):
     model = Group
     paginate_by = 10
-
-class NoteListView(LoginRequiredMixin, generic.ListView):
-    model = Note
-    
-    def get(self, request, *args, **kwargs):
-        form = GroupForm()
-        if request.method == "GET" and request.GET.get("groups") is not None:
-            form = GroupForm(request.GET)
-            if form.is_valid:
-         #redirect to the url where you'll process the input
-                gr=request.GET.get("groups")
-                note_list=Note.objects.filter(groupID=gr)
-                return render(request, 'catalog/note_list.html',{'form': form,'note_list':note_list})
-        return super(NoteListView, self).get(request, *args, **kwargs)
-
-    def get_context_data(self, **kwargs):
-        # В первую очередь получаем базовую реализацию контекста
-        context = super(NoteListView, self).get_context_data(**kwargs)
-        # Добавляем новую переменную к контексту и инициализируем её некоторым значением
-        form = GroupForm()
-        context['form'] = form
-        return context
-        
-    paginate_by = 10
-
-class NoteDetailView(LoginRequiredMixin, generic.DetailView):
-    model = Note
 
 class GroupDetailView(LoginRequiredMixin, generic.DetailView):
     model = Group

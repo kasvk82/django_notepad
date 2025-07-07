@@ -1,16 +1,18 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <div id="main_content">
+  <div class="main_content">
     <h1>Главная страница</h1>
-    <p>Количество групп и заметок:</p>
-    <ul>
-      <li class="elementscount"><strong>Groups:</strong> {{ num_groups }}</li>
-      <li class="elementscount"><strong>Notes:</strong> {{ num_notes }}</li>
-    </ul>
+    <div class="sub_content">
+      <p><strong>Количество групп и заметок:</strong></p>
+      <ul>
+        <li class="elementscount"><strong>Groups:</strong> {{ num_groups }}</li>
+        <li class="elementscount"><strong>Notes:</strong> {{ num_notes }}</li>
+      </ul>
 
-    <p>You have visited this page {{ num_visits }} time {{ num_visits|pluralize }}.</p>
-    <p>Visits {{ group.get_val }} </p>
+      <!-- <p><strong>You have visited this page {{ num_visits }} time {{ num_visits|pluralize }}.</strong></p>
+      <p><strong>Visits</strong> {{ group.get_val }} </p> -->
+    </div>
   </div> 
 <!-- <div id="test">aaaa</div> -->
 {% endblock %}
